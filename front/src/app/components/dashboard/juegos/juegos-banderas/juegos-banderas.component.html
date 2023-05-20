@@ -1,0 +1,14 @@
+<button mat-button>Banderas de Europa</button>
+
+
+<div class="container col-auto text-center">
+  <img class="border" [src]="pregunta" style="width: 100px"/>
+  <form [formGroup]="form" (ngSubmit)="comprobar()">
+    <mat-form-field class="ancho" appearance="fill">
+      <input type="text" matInput autocomplete="off" formControlName="pais_formulario">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" class="ancho boton" style="display: none;">Comprobar</button>
+  </form>
+</div>
+
+

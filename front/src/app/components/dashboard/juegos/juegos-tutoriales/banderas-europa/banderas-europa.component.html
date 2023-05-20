@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-1">
+    <div class="mx-3 my-3 text-center" *ngFor="let countryItem of countryArray">
+      <img class="border" [src]="countryItem.bandera" style="width: 100px"/>
+      <h1>{{countryItem.nombre_pais}}</h1>
+    </div>
+  </div>
+</div>
