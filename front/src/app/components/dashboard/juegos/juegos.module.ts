@@ -12,6 +12,10 @@ import { TutorialBanderasEuropaComponent } from './juegos-tutoriales/tutorial-ba
 import { TutorialPaisesEuropaComponent } from './juegos-tutoriales/tutorial-paises-europa/tutorial-paises-europa.component';
 import { TutorialPaisesMundoComponent } from './juegos-tutoriales/tutorial-paises-mundo/tutorial-paises-mundo.component';
 import { JuegoQuizEuropaComponent } from './juegos-quiz/juego-quiz-europa/juego-quiz-europa.component';
+import { JuegosBanderasComponent } from './juegos-banderas/juegos-banderas.component';
+import { JuegosMapasComponent } from './juegos-mapas/juegos-mapas.component';
+import { JuegosQuizComponent } from './juegos-quiz/juegos-quiz.component';
+import { JuegosTutorialesComponent } from './juegos-tutoriales/juegos-tutoriales.component';
 
 
 
@@ -23,7 +27,11 @@ import { JuegoQuizEuropaComponent } from './juegos-quiz/juego-quiz-europa/juego-
     JuegoQuizEuropaComponent,
     TutorialBanderasEuropaComponent,
     TutorialPaisesEuropaComponent,
-    TutorialPaisesMundoComponent
+    TutorialPaisesMundoComponent,
+    JuegosBanderasComponent,
+    JuegosMapasComponent,
+    JuegosQuizComponent,
+    JuegosTutorialesComponent
 
   ],
   imports: [

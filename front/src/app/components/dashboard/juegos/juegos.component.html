@@ -1,51 +1,26 @@
 
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-sm">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>Juegos de Mapas</mat-panel-title>
-          </mat-expansion-panel-header>
-          <button mat-button routerLink="juego_mapa_europa">Mapa Europa</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-    <div class="col-sm">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>Juegos de Banderas</mat-panel-title>
-          </mat-expansion-panel-header>
-          <button mat-button routerLink="juego_banderas_europa">Banderas Europa</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-    <div class="col-sm">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>Juegos de Preguntas</mat-panel-title>
-          </mat-expansion-panel-header>
-          <button mat-button routerLink="juego_quiz_europa">Preguntas Europa</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-    <div class="col-sm">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>Juegos Tutoriales</mat-panel-title>
-          </mat-expansion-panel-header>
-          <button mat-button routerLink="tutorial_banderas_europa">Banderas Europa</button>
-          <button mat-button routerLink="tutorial_paises_europa">Mapa Europa</button>
-          <button mat-button routerLink="tutorial_paises_mundo">Mapa Mundo</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-  </div>
+  <mat-tab-group animationDuration="0ms" dynamicHeight>
+    <mat-tab label="Juegos de Mapas" routerLink="juegos_mapas">
+      <ng-template matTabContent>
+        <app-juegos-mapas></app-juegos-mapas>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Juegos de Banderas">
+      <ng-template matTabContent>
+        <app-juegos-banderas></app-juegos-banderas>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Juegos de Preguntas">
+      <ng-template matTabContent>
+        <app-juegos-quiz></app-juegos-quiz>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Juegos Tutoriales">
+      <ng-template matTabContent>
+        <app-juegos-tutoriales></app-juegos-tutoriales>
+      </ng-template></mat-tab>
+  </mat-tab-group>
 </div>
 
 
-
-<router-outlet></router-outlet>

@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -35,7 +36,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatCardModule,
     MatTableModule,
     MatTooltipModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
   exports: [
     MatToolbarModule,
@@ -50,7 +52,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatCardModule,
     MatTableModule,
     MatTooltipModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ]
 })
 export class SharedMaterialModule { }
