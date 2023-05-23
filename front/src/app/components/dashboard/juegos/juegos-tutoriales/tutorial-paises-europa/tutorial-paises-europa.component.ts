@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 
+
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
-import am5geodata_worldHigh from "@amcharts/amcharts5-geodata/worldHigh";
+import am5geodata_europeHigh from "@amcharts/amcharts5-geodata/region/world/europeHigh";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_lang_ES from "@amcharts/amcharts5-geodata/lang/ES01";
 
 @Component({
-  selector: 'app-paises-mundo',
-  templateUrl: './paises-mundo.component.html',
-  styleUrls: ['./paises-mundo.component.css']
+  selector: 'app-tutorial-paises-europa',
+  templateUrl: './tutorial-paises-europa.component.html',
+  styleUrls: ['./tutorial-paises-europa.component.css']
 })
-export class PaisesMundoComponent {
+export class TutorialPaisesEuropaComponent {
   ngAfterViewInit(){
     let root = am5.Root.new("chartdiv");
     root.fps = 165;
@@ -26,8 +27,9 @@ export class PaisesMundoComponent {
     }));
 
     let polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
-      geoJSON: am5geodata_worldHigh,
+      geoJSON: am5geodata_europeHigh,
       geodataNames: am5geodata_lang_ES,
+      exclude: ["SJ", "JE", "GG", "IM", "FO", "AX", "GI"]
     }));
 
     polygonSeries.mapPolygons.template.setAll({

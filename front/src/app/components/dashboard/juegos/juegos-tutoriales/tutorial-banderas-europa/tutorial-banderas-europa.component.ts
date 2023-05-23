@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { CountrydataService } from 'src/app/services/countrydata.service';
 
 @Component({
-  selector: 'app-banderas-europa',
-  templateUrl: './banderas-europa.component.html',
-  styleUrls: ['./banderas-europa.component.css']
+  selector: 'app-tutorial-banderas-europa',
+  templateUrl: './tutorial-banderas-europa.component.html',
+  styleUrls: ['./tutorial-banderas-europa.component.css']
 })
-export class BanderasEuropaComponent {
-
+export class TutorialBanderasEuropaComponent {
   countryArray: any[] = [];
   isResultLoaded = false;
 

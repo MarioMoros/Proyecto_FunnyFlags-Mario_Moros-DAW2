@@ -1,10 +1,51 @@
-<mat-toolbar>
-  <button mat-button routerLink="juegos_mapas">Juegos de Mapas</button>
-  <span class="example-spacer"></span>
-  <button mat-button routerLink="juegos_banderas">Juegos de Banderas</button>
-  <span class="example-spacer"></span>
-  <button mat-button routerLink="juegos_quiz">Juegos de Preguntas</button>
-  <span class="example-spacer"></span>
-  <button mat-button routerLink="juegos_tutoriales">Juegos Tutoriales</button>
-</mat-toolbar>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Juegos de Mapas</mat-panel-title>
+          </mat-expansion-panel-header>
+          <button mat-button routerLink="juego_mapa_europa">Mapa Europa</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-sm">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Juegos de Banderas</mat-panel-title>
+          </mat-expansion-panel-header>
+          <button mat-button routerLink="juego_banderas_europa">Banderas Europa</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-sm">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Juegos de Preguntas</mat-panel-title>
+          </mat-expansion-panel-header>
+          <button mat-button routerLink="juego_quiz_europa">Preguntas Europa</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-sm">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Juegos Tutoriales</mat-panel-title>
+          </mat-expansion-panel-header>
+          <button mat-button routerLink="tutorial_banderas_europa">Banderas Europa</button>
+          <button mat-button routerLink="tutorial_paises_europa">Mapa Europa</button>
+          <button mat-button routerLink="tutorial_paises_mundo">Mapa Mundo</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+
+
 <router-outlet></router-outlet>

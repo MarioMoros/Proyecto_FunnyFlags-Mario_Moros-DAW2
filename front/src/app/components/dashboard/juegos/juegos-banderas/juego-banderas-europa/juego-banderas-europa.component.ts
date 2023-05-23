@@ -3,17 +3,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CountrydataService } from 'src/app/services/countrydata.service';
 
 @Component({
-  selector: 'app-juegos-banderas',
-  templateUrl: './juegos-banderas.component.html',
-  styleUrls: ['./juegos-banderas.component.css']
+  selector: 'app-juego-banderas-europa',
+  templateUrl: './juego-banderas-europa.component.html',
+  styleUrls: ['./juego-banderas-europa.component.css']
 })
-export class JuegosBanderasComponent {
-
+export class JuegoBanderasEuropaComponent {
   pregunta:any = '';
   pais:any = '';
   form: FormGroup;
   index:any = 0;
   json:any = [];
+  puntuacion = 100;
+  fin = false;
 
 
   constructor(private countrydata: CountrydataService, private fb: FormBuilder){
@@ -39,17 +40,19 @@ export class JuegosBanderasComponent {
   comprobar(){
     const pais_introducido = this.form.value.pais_formulario;
 
-    if(this.pais == pais_introducido){
+    if(this.pais.toLowerCase() == pais_introducido.toLowerCase()){
       this.form.setValue({
         pais_formulario: ''
       });
       this.index++;
-      this.pregunta = this.json[this.index].bandera;
-      this.pais = this.json[this.index].nombre_pais;
+      if(this.index != 10){
+        this.pregunta = this.json[this.index].bandera;
+        this.pais = this.json[this.index].nombre_pais;
+      }else{
+        this.fin = true;
+      }
     }else{
-      console.log('mal');
+      this.puntuacion = this.puntuacion - 10;
     }
   }
-
-
 }
