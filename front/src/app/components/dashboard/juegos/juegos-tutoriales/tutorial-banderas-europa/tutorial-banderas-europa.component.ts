@@ -8,7 +8,8 @@ import { CountrydataService } from 'src/app/services/countrydata.service';
 })
 export class TutorialBanderasEuropaComponent {
   countryArray: any[] = [];
-  isResultLoaded = false;
+
+  loading = false;
 
   constructor(private countrydata: CountrydataService){}
 
@@ -17,10 +18,10 @@ export class TutorialBanderasEuropaComponent {
   }
 
   countryData(){
+    this.loading = true;
     this.countrydata.getAllCountryData().subscribe((response: any) =>{
-      this.isResultLoaded = true;
+      this.loading = false;
       this.countryArray = response;
-      console.log(this.countryArray);
     });
   }
 }

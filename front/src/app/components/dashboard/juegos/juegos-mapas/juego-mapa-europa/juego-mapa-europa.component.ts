@@ -8,6 +8,7 @@ import am5geodata_europeHigh from "@amcharts/amcharts5-geodata/region/world/euro
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_lang_ES from "@amcharts/amcharts5-geodata/lang/ES01";
 
+
 @Component({
   selector: 'app-juego-mapa-europa',
   templateUrl: './juego-mapa-europa.component.html',
@@ -51,6 +52,9 @@ export class JuegoMapaEuropaComponent {
       var pais_pulsado = ev.target.dataItem.dataContext.name;
       if(this.pais == pais_pulsado){
         ev.target.states.applyAnimate('bien');
+        setTimeout(()=>{
+          ev.target.states.applyAnimate('bien');
+        });
         this.index++;
         if(this.index != 48){
           this.pais = this.json[this.index].nombre_pais;
@@ -96,4 +100,5 @@ export class JuegoMapaEuropaComponent {
       this.pais = this.json[this.index].nombre_pais;
     });
   }
+
 }

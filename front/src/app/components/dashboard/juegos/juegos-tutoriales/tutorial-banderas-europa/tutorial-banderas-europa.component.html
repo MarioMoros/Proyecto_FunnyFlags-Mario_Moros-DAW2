@@ -1,8 +1,13 @@
 <div class="container mt-5">
+  <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
   <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-1">
     <div class="mx-3 my-3 text-center" *ngFor="let countryItem of countryArray">
       <img class="border" [src]="countryItem.bandera" style="width: 100px"/>
       <h1>{{countryItem.nombre_pais}}</h1>
     </div>
   </div>
+  <button type="button" mat-button onclick="history.back()">
+    <mat-icon>close</mat-icon>
+    <span>Abandonar</span>
+  </button>
 </div>

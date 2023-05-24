@@ -37,7 +37,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTableModule,
     MatTooltipModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   exports: [
     MatToolbarModule,
@@ -53,7 +53,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTableModule,
     MatTooltipModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
   ]
 })
 export class SharedMaterialModule { }
