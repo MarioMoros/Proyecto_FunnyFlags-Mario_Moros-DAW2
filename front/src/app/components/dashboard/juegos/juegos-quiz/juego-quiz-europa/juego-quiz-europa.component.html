@@ -1,9 +1,14 @@
 
-<div class="mt-5" [innerHTML]="pregunta"></div>
+<div class="container col-auto text-center mt-5">
+  <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
+  <div [innerHTML]="pregunta"></div>
 
-<div [innerHTML]="respuesta" id="este"></div>
+  <div [innerHTML]="respuesta" id="este"></div>
 
-<button type="button" mat-button onclick="history.back()">
+<button type="button" *ngIf="!loading" mat-raised-button color="warn" class="mt-5" onclick="history.back()">
   <mat-icon>close</mat-icon>
   <span>Abandonar</span>
 </button>
+</div>
+
+

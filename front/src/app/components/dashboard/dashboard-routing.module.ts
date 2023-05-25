@@ -5,6 +5,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { LogrosComponent } from './logros/logros.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { InfoComponent } from './info/info.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     {path: 'logros', component: LogrosComponent},
     {path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(x => x.JuegosModule)},
     {path: 'info', component: InfoComponent},
+    {path: 'ranking', component: RankingComponent},
     {path: '', component: InicioComponent},
   ]},
 

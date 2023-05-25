@@ -10,6 +10,7 @@ export class JuegoQuizEuropaComponent {
   pregunta:any = '';
   respuesta:any = '';
   id_random = Math.round(Math.random()*10+1);
+  loading = false;
 
   constructor(private countrydata: CountrydataService){}
 
@@ -19,8 +20,9 @@ export class JuegoQuizEuropaComponent {
   }
 
   question(){
+    this.loading = true;
     this.countrydata.getQuestion(this.id_random).subscribe((response: any) =>{
-
+      this.loading = false;
       console.log(response);
       this.pregunta = '<div>'+response[0]+' '+response[1]+'?</div>';
 

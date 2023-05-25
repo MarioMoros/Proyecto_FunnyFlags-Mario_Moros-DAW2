@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container col-auto text-center mt-5">
   <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
   <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-1">
     <div class="mx-3 my-3 text-center" *ngFor="let countryItem of countryArray">
@@ -6,7 +6,8 @@
       <h1>{{countryItem.nombre_pais}}</h1>
     </div>
   </div>
-  <button type="button" mat-button onclick="history.back()">
+
+  <button type="button" *ngIf="!loading" mat-raised-button color="warn" onclick="history.back()">
     <mat-icon>close</mat-icon>
     <span>Abandonar</span>
   </button>

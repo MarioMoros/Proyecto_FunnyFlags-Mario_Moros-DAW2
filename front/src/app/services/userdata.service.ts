@@ -34,4 +34,12 @@ export class UserdataService {
       headers: this.header
     })
   }
+
+  showRanking(){
+    return this.httpRequest.get('http://localhost:8000/api/showRanking');
+  }
+
+  updateRanking(data:any){
+    return this.httpRequest.post('http://localhost:8000/api/updateRanking', data);
+  }
 }

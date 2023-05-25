@@ -8,6 +8,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { LogrosComponent } from './logros/logros.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { InfoComponent } from './info/info.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { InfoComponent } from './info/info.component';
     SettingsComponent,
     LogrosComponent,
     InicioComponent,
-    InfoComponent
+    InfoComponent,
+    RankingComponent
   ],
   imports: [
     CommonModule,

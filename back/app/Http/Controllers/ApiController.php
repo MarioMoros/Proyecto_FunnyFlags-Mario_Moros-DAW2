@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Ranking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,33 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-    //
+    public function showRanking(){
+        $consulta_showRanking = 'select b.name, a.nombre_juego, a.puntuacion, a.tiempo from ranking a join users b
+            on a.id_usuario = b.id';
+        $query_showRanking = DB::select($consulta_showRanking);
+
+        return response()->json($query_showRanking, 200);
+    }
+
+    public function updateRanking(Request $request){
+        $info = Ranking::create([
+            'id_usuario'=>$request->id_usuario,
+            'nombre_juego'=>$request->nombre_juego,
+            'puntuacion'=>$request->puntuacion,
+            'tiempo'=>$request->tiempo
+        ]);
+
+        if($user){
+            return response()->json([
+                'success' => true,
+                'code' => 1,
+                'message' => 'Ranking Update',
+                'data' => $info,
+            ], Response::HTTP_OK);
+        }
+    }
+
+
     public function register(Request $req){
         $data = $req->only('name', 'email', 'password');
         $validator = Validator::make($data, [
@@ -66,12 +93,12 @@ class ApiController extends Controller
                 ]);
             }
         } catch (JWTException $e) {
-    	return $credentials;
-            return response()->json([
-                	'success' => false,
-                    'code' => 2,
-                	'message' => 'Could not create token.'
-                ]);
+            return $credentials;
+                return response()->json([
+                        'success' => false,
+                        'code' => 2,
+                        'message' => 'Could not create token.'
+                    ]);
         }
 
  		//Token created, return with success response and jwt token

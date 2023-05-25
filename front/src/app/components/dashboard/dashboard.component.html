@@ -1,6 +1,8 @@
 <mat-toolbar color="primary" *ngIf="!loading" style="height: 80px;">
-  <img src="./assets/img/logo.png" alt="" width="8%" class="spinner">
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <div class="container col-auto text-center">
+    <img src="./assets/img/logo.png" alt="" width="150px">
+  </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -20,12 +22,17 @@
       <mat-icon>emoji_events</mat-icon>
       <span>Logros</span>
     </button>
+    <button mat-menu-item routerLink="ranking">
+      <mat-icon>leaderboard</mat-icon>
+      <span>Ranking</span>
+    </button>
     <button mat-menu-item (click)="logoutUser()">
       <mat-icon>logout</mat-icon>
       <span>Exit</span>
     </button>
   </mat-menu>
 </mat-toolbar>
+
 
 
 <div class="container" *ngIf="!loading">

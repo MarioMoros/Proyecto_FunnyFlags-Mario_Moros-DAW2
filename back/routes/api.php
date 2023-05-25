@@ -25,6 +25,10 @@ Route::get('getQuestion/{i}', [CountryController::class, 'getQuestion']);
 Route::get('pedirBanderas', [CountryController::class, 'pedirBanderas']);
 Route::get('pedirPaises', [CountryController::class, 'pedirPaises']);
 
+
+Route::get('showRanking', [ApiController::class, 'showRanking']);
+Route::post('updateRanking', [ApiController::class, 'updateRanking']);
+
 Route::post('login', [ApiController::class, 'login']);
 Route::post('register', [ApiController::class, 'register']);
 Route::get('infoUser/{i}', [ApiController::class, 'getUserData']);
