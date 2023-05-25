@@ -22,21 +22,32 @@ class ApiController extends Controller
     }
 
     public function updateRanking(Request $request){
-        $info = Ranking::create([
+
+        $consulta_updateRanking = 'insert into ranking values ('.$request->id_usuario.', "'.$request->nombre_juego.'",'.$request->puntuacion.', "'.$request->tiempo.'") ON DUPLICATE KEY UPDATE puntuacion = '.$request->puntuacion.', tiempo = "'.$request->tiempo.'"';
+        $query_updateRanking = DB::statement($consulta_updateRanking);
+
+        return response()->json([
+            'success' => true,
+            'code' => 1,
+            'message' => 'Ranking Update',
+            'data' => $query_updateRanking,
+        ], Response::HTTP_OK);
+
+        /*$info = Ranking::create([
             'id_usuario'=>$request->id_usuario,
             'nombre_juego'=>$request->nombre_juego,
             'puntuacion'=>$request->puntuacion,
             'tiempo'=>$request->tiempo
         ]);
 
-        if($user){
+        if($info){
             return response()->json([
                 'success' => true,
                 'code' => 1,
                 'message' => 'Ranking Update',
                 'data' => $info,
             ], Response::HTTP_OK);
-        }
+        }*/
     }
 
 

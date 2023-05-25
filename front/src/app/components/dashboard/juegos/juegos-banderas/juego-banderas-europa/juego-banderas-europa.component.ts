@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CountrydataService } from 'src/app/services/countrydata.service';
+import { Juego } from '../../juego.model';
+import { UserdataService } from 'src/app/services/userdata.service';
 
 @Component({
   selector: 'app-juego-banderas-europa',
@@ -14,10 +16,13 @@ export class JuegoBanderasEuropaComponent {
   index:any = 0;
   json:any = [];
   puntuacion = 100;
+  tiempo = '00:00:01';
   fin = false;
 
+  datos:any;
 
-  constructor(private countrydata: CountrydataService, private fb: FormBuilder){
+
+  constructor(private countrydata: CountrydataService, private userdata: UserdataService, private fb: FormBuilder){
     this.form = this.fb.group({
       pais_formulario: ''
     });
@@ -50,9 +55,17 @@ export class JuegoBanderasEuropaComponent {
         this.pais = this.json[this.index].nombre_pais;
       }else{
         this.fin = true;
+        this.updateRanking();
       }
     }else{
       this.puntuacion = this.puntuacion - 10;
     }
+  }
+
+  updateRanking(){
+    this.datos = new Juego(29,'banderas_europa',10,'00:10:00');
+    this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
+
+    });
   }
 }

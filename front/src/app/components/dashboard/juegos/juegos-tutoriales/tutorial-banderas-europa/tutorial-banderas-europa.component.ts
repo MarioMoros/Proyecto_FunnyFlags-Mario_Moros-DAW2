@@ -13,7 +13,7 @@ export class TutorialBanderasEuropaComponent {
 
   constructor(private countrydata: CountrydataService){}
 
-  ngAfterViewInit(){
+  ngOnInit(){
     this.countryData();
   }
 
