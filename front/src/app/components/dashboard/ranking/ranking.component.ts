@@ -35,7 +35,7 @@ export class RankingComponent {
           case "banderas_europa":
             this.arrayBanderas.push(this.json[index]);
             break;
-          case "mapas_europa":
+          case "mapa_europa":
             this.arrayMapas.push(this.json[index]);
             break;
           case "quiz_europa":

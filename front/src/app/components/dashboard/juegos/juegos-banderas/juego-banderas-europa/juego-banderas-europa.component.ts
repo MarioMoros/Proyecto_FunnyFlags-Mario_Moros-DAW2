@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CountrydataService } from 'src/app/services/countrydata.service';
 import { Juego } from '../../juego.model';
 import { UserdataService } from 'src/app/services/userdata.service';
+import Timer from 'easytimer.js';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-juego-banderas-europa',
@@ -23,6 +25,8 @@ export class JuegoBanderasEuropaComponent {
 
   idUsuario:any;
 
+  timer = new Timer();
+  tiempo_string = '';
 
 
   constructor(private countrydata: CountrydataService, private userdata: UserdataService, private fb: FormBuilder){
@@ -34,7 +38,16 @@ export class JuegoBanderasEuropaComponent {
   ngAfterViewInit(){
     this.idUsuario = localStorage.getItem('userId');
     this.pedirBandera();
+    this.timer.start({precision: 'secondTenths'});
+
+    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    });
+
+
   }
+
+
 
   pedirBandera(){
     this.countrydata.pedirBanderas().subscribe((response: any) =>{
@@ -57,16 +70,23 @@ export class JuegoBanderasEuropaComponent {
         pais_formulario: ''
       });
       this.index++;
-      if(this.index != this.json.length){
+      if(this.index != 1){//Poner this.json.length
         this.pregunta = this.json[this.index].bandera;
         this.pais = this.json[this.index].nombre_pais;
       }else{
         this.fin = true;
+        this.timer.pause();
+        this.tiempo_string = this.timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']);
         this.updateRanking();
       }
     }else{
       this.puntuacion = this.puntuacion - 10;
     }
+  }
+
+  salir(){
+    this.timer.stop();
+    history.back();
   }
 
   eliminarDiacriticosEs(texto:String){
@@ -76,7 +96,7 @@ export class JuegoBanderasEuropaComponent {
   }
 
   updateRanking(){
-    this.datos = new Juego(parseInt(this.idUsuario),'banderas_europa',this.puntuacion,'00:00:00');
+    this.datos = new Juego(parseInt(this.idUsuario),'banderas_europa',this.puntuacion,this.tiempo_string);
     this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
 
     });

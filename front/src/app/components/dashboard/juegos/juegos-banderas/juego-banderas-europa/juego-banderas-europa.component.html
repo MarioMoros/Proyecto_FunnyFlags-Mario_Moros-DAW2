@@ -1,12 +1,18 @@
-<div class="container col-auto text-center mt-5" *ngIf="!fin">
-  <img class="border" [src]="pregunta" style="width: 200px"/>
-  <form [formGroup]="form" (ngSubmit)="comprobar()" class="mt-3">
-    <mat-form-field class="ancho" appearance="fill">
-      <input type="text" matInput autocomplete="off" formControlName="pais_formulario" autofocus>
-    </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" class="ancho boton" style="display: none;">Comprobar</button>
-  </form>
-  <button type="button" mat-raised-button color="warn" onclick="history.back()">
+<div class="container col-auto text-center mt-5">
+  <div id="secondTenthsExample">
+    <div class="values"></div>
+  </div>
+  <div *ngIf="!fin">
+    <img class="border mt-4" [src]="pregunta" style="width: 200px"/>
+    <form [formGroup]="form" (ngSubmit)="comprobar()" class="mt-3">
+      <mat-form-field class="ancho" appearance="fill">
+        <input type="text" matInput autocomplete="off" formControlName="pais_formulario" autofocus>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" class="ancho boton" style="display: none;">Comprobar</button>
+    </form>
+  </div>
+
+  <button type="button" mat-raised-button color="warn" (click)="salir()">
     <mat-icon>close</mat-icon>
     <span>Abandonar</span>
   </button>

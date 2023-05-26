@@ -1,4 +1,4 @@
-<div class="container col-auto text-center mt-5" *ngIf="index != 48">
+<div class="container col-auto text-center mt-5" *ngIf="!fin">
   <h1 class="border-bottom border-top" [innerHTML]="pais"></h1>
 
   <div id="chartdiv" style="width: 100%; height: 700px; margin-top: 50px;"></div>
@@ -9,7 +9,7 @@
   </button>
 </div>
 
-<div class="container" *ngIf="index == 48">
+<div class="container" *ngIf="fin">
   <h1>Puntuación</h1>
   <h2 [innerHTML]="puntuacion"></h2>
 </div>

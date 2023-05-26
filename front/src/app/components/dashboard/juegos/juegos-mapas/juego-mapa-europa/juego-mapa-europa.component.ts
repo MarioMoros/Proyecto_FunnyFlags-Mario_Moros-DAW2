@@ -7,6 +7,8 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_europeHigh from "@amcharts/amcharts5-geodata/region/world/europeHigh";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_lang_ES from "@amcharts/amcharts5-geodata/lang/ES01";
+import { Juego } from '../../juego.model';
+import { UserdataService } from 'src/app/services/userdata.service';
 
 
 @Component({
@@ -21,9 +23,14 @@ export class JuegoMapaEuropaComponent {
   polygonSeries:any;
   puntuacion = 100;
 
-  constructor(private countrydata: CountrydataService){}
+  fin = false;
+  datos:any;
+  idUsuario:any;
+
+  constructor(private countrydata: CountrydataService, private userdata: UserdataService){}
 
   ngAfterViewInit(){
+    this.idUsuario = localStorage.getItem('userId');
     this.pedirPaises();
 
     let root = am5.Root.new("chartdiv");
@@ -56,8 +63,11 @@ export class JuegoMapaEuropaComponent {
           ev.target.states.applyAnimate('bien');
         });
         this.index++;
-        if(this.index != 48){
+        if(this.index != 1){//Poner this.json.length
           this.pais = this.json[this.index].nombre_pais;
+        }else{
+          this.fin = true;
+          this.updateRanking();
         }
       }else{
         ev.target.states.applyAnimate('mal');
@@ -92,6 +102,12 @@ export class JuegoMapaEuropaComponent {
     // Make stuff animate on load
     chart.appear(3000, 100);
 
+  }
+
+  updateRanking(){
+    this.datos = new Juego(parseInt(this.idUsuario),'mapa_europa',this.puntuacion,'10');
+    this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
+    });
   }
 
   pedirPaises(){
