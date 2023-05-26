@@ -13,7 +13,7 @@ export class SettingsComponent {
 
   constructor(private userdata: UserdataService){}
 
-  ngAfterViewInit(){
+  ngOnInit(){
     this.userSettings();
   }
 

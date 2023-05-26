@@ -20,7 +20,8 @@ export class DashboardComponent {
     this.userdata.logoutUser(localStorage.getItem('token')).subscribe((response: any) => {
       if (response.code == 1) {
         localStorage.removeItem('token');
-        localStorage.removeItem('user_details')
+        localStorage.removeItem('user_details');
+        localStorage.removeItem('userId');
         this.target = '<div>'+response.message+'</div>';
         setTimeout(()=>{
           this.router.navigate(['/']);

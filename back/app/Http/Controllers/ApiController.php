@@ -15,7 +15,7 @@ class ApiController extends Controller
 {
     public function showRanking(){
         $consulta_showRanking = 'select b.name, a.nombre_juego, a.puntuacion, a.tiempo from ranking a join users b
-            on a.id_usuario = b.id';
+            on a.id_usuario = b.id order by a.puntuacion desc';
         $query_showRanking = DB::select($consulta_showRanking);
 
         return response()->json($query_showRanking, 200);
@@ -112,13 +112,17 @@ class ApiController extends Controller
                     ]);
         }
 
+        $consulta_userId = 'select id from users where email = "'.$request->email.'"';
+        $query_userId = DB::select($consulta_userId);
+
  		//Token created, return with success response and jwt token
         return response()->json([
             'success' => true,
             'code' => 1,
             'message' => 'Login Successfully',
             'token' => $token,
-            'user_details' => $credentials['email']
+            'user_details' => $credentials['email'],
+            'userId' => $query_userId[0]->id
         ]);
     }
 

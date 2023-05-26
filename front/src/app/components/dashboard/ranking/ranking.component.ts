@@ -7,6 +7,13 @@ import { UserdataService } from 'src/app/services/userdata.service';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent {
+
+  displayedColumns: string[] = ['name', 'nombre_juego', 'puntuacion', 'tiempo'];
+  dataSourceBanderas = [];
+  dataSourceMapas = [];
+  dataSourceQuiz = [];
+
+
   loading = false;
   arrayMapas = [];
   arrayBanderas = [];
@@ -38,10 +45,9 @@ export class RankingComponent {
       }
       this.loading = false;
 
-      console.log(this.json);
-      console.log(this.arrayMapas);
-      console.log(this.arrayBanderas);
-      console.log(this.arrayQuiz);
+      this.dataSourceBanderas = this.arrayBanderas;
+      this.dataSourceMapas = this.arrayMapas;
+      this.dataSourceQuiz = this.arrayQuiz;
     });
   }
 }

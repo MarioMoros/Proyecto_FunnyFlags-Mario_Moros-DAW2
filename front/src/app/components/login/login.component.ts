@@ -14,6 +14,7 @@ export class LoginComponent {
   target:any = '';
   token:any;
   user_details:any;
+  userId:any;
 
   constructor(private userdata: UserdataService, private router: Router){}
 
@@ -27,6 +28,7 @@ export class LoginComponent {
           if(response.code == 1){
             this.token = localStorage.setItem('token', response.token);
             this.user_details = localStorage.setItem('user_details', response.user_details);
+            this.userId = localStorage.setItem('userId', response.userId);
             this.target = '<div>'+response.message+'</div>';
             setTimeout(()=>{
               this.router.navigate(['dashboard']);

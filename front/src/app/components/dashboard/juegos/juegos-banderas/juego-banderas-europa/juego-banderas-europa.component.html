@@ -2,7 +2,7 @@
   <img class="border" [src]="pregunta" style="width: 200px"/>
   <form [formGroup]="form" (ngSubmit)="comprobar()" class="mt-3">
     <mat-form-field class="ancho" appearance="fill">
-      <input type="text" matInput autocomplete="off" formControlName="pais_formulario">
+      <input type="text" matInput autocomplete="off" formControlName="pais_formulario" autofocus>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" class="ancho boton" style="display: none;">Comprobar</button>
   </form>

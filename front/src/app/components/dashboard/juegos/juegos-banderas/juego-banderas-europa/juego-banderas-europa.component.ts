@@ -21,6 +21,9 @@ export class JuegoBanderasEuropaComponent {
 
   datos:any;
 
+  idUsuario:any;
+
+
 
   constructor(private countrydata: CountrydataService, private userdata: UserdataService, private fb: FormBuilder){
     this.form = this.fb.group({
@@ -29,6 +32,7 @@ export class JuegoBanderasEuropaComponent {
   }
 
   ngAfterViewInit(){
+    this.idUsuario = localStorage.getItem('userId');
     this.pedirBandera();
   }
 
@@ -45,12 +49,15 @@ export class JuegoBanderasEuropaComponent {
   comprobar(){
     const pais_introducido = this.form.value.pais_formulario;
 
-    if(this.pais.toLowerCase() == pais_introducido.toLowerCase()){
+    let introducido_bueno = this.eliminarDiacriticosEs(pais_introducido);
+    let pais_bueno = this.eliminarDiacriticosEs(this.pais);
+
+    if(pais_bueno.toLowerCase() == introducido_bueno.toLowerCase()){
       this.form.setValue({
         pais_formulario: ''
       });
       this.index++;
-      if(this.index != 10){
+      if(this.index != this.json.length){
         this.pregunta = this.json[this.index].bandera;
         this.pais = this.json[this.index].nombre_pais;
       }else{
@@ -62,8 +69,14 @@ export class JuegoBanderasEuropaComponent {
     }
   }
 
+  eliminarDiacriticosEs(texto:String){
+    return texto.normalize('NFD')
+      .replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi,"$1$2")
+      .normalize();
+  }
+
   updateRanking(){
-    this.datos = new Juego(29,'banderas_europa',10,'00:10:00');
+    this.datos = new Juego(parseInt(this.idUsuario),'banderas_europa',this.puntuacion,'00:00:00');
     this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
 
     });
