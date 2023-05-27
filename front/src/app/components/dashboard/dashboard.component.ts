@@ -13,6 +13,15 @@ export class DashboardComponent {
 
   loading = false;
   target:any = '';
+  esAdmin = false;
+  id:any;
+
+  ngOnInit(){
+    this.id = localStorage.getItem('userId');
+    if(parseInt(this.id) == 29){
+      this.esAdmin = true;
+    }
+  }
 
   logoutUser(){
     this.target = '<div></div>';

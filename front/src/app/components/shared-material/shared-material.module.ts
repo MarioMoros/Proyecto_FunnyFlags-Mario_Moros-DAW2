@@ -17,6 +17,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -38,6 +39,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTooltipModule,
     MatExpansionModule,
     MatTabsModule,
+    MatPaginatorModule
   ],
   exports: [
     MatToolbarModule,
@@ -54,6 +56,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTooltipModule,
     MatExpansionModule,
     MatTabsModule,
+    MatPaginatorModule
   ]
 })
 export class SharedMaterialModule { }

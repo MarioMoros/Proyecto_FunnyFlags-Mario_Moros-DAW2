@@ -34,3 +34,7 @@ Route::post('register', [ApiController::class, 'register']);
 Route::get('infoUser/{i}', [ApiController::class, 'getUserData']);
 Route::get('logout/{token}', [ApiController::class, 'logout']);
 
+Route::delete('eliminarUsuario/{i}', [ApiController::class, 'eliminarUsuario']);
+Route::get('mostrarUsuarios', [ApiController::class, 'mostrarUsuarios']);
+
+

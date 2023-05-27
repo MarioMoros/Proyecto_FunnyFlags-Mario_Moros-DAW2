@@ -9,6 +9,7 @@ import { LogrosComponent } from './logros/logros.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { InfoComponent } from './info/info.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { AdministrarComponent } from './administrar/administrar.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RankingComponent } from './ranking/ranking.component';
     LogrosComponent,
     InicioComponent,
     InfoComponent,
-    RankingComponent
+    RankingComponent,
+    AdministrarComponent
   ],
   imports: [
     CommonModule,

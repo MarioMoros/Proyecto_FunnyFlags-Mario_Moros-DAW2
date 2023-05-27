@@ -2,9 +2,14 @@
   <span>Ranking</span>
 </mat-toolbar>
 
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="!loading">
   <mat-tab-group animationDuration="0ms" dynamicHeight>
     <mat-tab label="Ranking de Mapas">
+      <mat-form-field class="mt-4">
+        <mat-label>Filtrar por Usuario</mat-label>
+        <input matInput (keyup)="applyFilterMapas($event)" #input>
+      </mat-form-field>
+
       <table mat-table [dataSource]="dataSourceMapas" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
@@ -35,6 +40,11 @@
       </table>
     </mat-tab>
     <mat-tab label="Ranking de Banderas">
+      <mat-form-field class="mt-4">
+        <mat-label>Filtrar por Usuario</mat-label>
+        <input matInput (keyup)="applyFilterBanderas($event)" #input>
+      </mat-form-field>
+
       <table mat-table [dataSource]="dataSourceBanderas" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
@@ -65,6 +75,11 @@
       </table>
     </mat-tab>
     <mat-tab label="Ranking de Quiz">
+      <mat-form-field class="mt-4">
+        <mat-label>Filtrar por Usuario</mat-label>
+        <input matInput (keyup)="applyFilterQuiz($event)" #input>
+      </mat-form-field>
+
       <table mat-table [dataSource]="dataSourceQuiz" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
@@ -95,6 +110,7 @@
       </table>
     </mat-tab>
   </mat-tab-group>
+  <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]" aria-label="Select page of users"></mat-paginator>
 </div>
 
-<mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
+<mat-spinner *ngIf="loading" diameter="50" class="spinner mt-4"></mat-spinner>

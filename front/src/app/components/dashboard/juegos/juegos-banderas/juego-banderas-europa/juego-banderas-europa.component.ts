@@ -18,7 +18,6 @@ export class JuegoBanderasEuropaComponent {
   index:any = 0;
   json:any = [];
   puntuacion = 100;
-  tiempo = '00:00:01';
   fin = false;
 
   datos:any;
@@ -38,13 +37,12 @@ export class JuegoBanderasEuropaComponent {
   ngAfterViewInit(){
     this.idUsuario = localStorage.getItem('userId');
     this.pedirBandera();
+
     this.timer.start({precision: 'secondTenths'});
 
     this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
-      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
     });
-
-
   }
 
 
@@ -70,7 +68,7 @@ export class JuegoBanderasEuropaComponent {
         pais_formulario: ''
       });
       this.index++;
-      if(this.index != 1){//Poner this.json.length
+      if(this.index != this.json.length){//Poner
         this.pregunta = this.json[this.index].bandera;
         this.pais = this.json[this.index].nombre_pais;
       }else{

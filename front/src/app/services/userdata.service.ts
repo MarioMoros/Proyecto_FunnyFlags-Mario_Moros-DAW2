@@ -42,4 +42,11 @@ export class UserdataService {
   updateRanking(data:any){
     return this.httpRequest.post('http://localhost:8000/api/updateRanking', data);
   }
+
+  eliminarUsuario(id:any){
+    return this.httpRequest.delete('http://localhost:8000/api/eliminarUsuario/'+id);
+  }
+  mostrarUsuarios(){
+    return this.httpRequest.get('http://localhost:8000/api/mostrarUsuarios');
+  }
 }

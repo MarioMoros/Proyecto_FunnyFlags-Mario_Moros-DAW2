@@ -26,6 +26,10 @@
       <mat-icon>leaderboard</mat-icon>
       <span>Ranking</span>
     </button>
+    <button mat-menu-item routerLink="administrar" *ngIf="esAdmin">
+      <mat-icon>engineering</mat-icon>
+      <span>Administrar</span>
+    </button>
     <button mat-menu-item (click)="logoutUser()">
       <mat-icon>logout</mat-icon>
       <span>Exit</span>

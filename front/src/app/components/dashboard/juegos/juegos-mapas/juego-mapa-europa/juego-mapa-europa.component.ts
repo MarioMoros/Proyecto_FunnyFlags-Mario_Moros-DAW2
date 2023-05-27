@@ -9,6 +9,8 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_lang_ES from "@amcharts/amcharts5-geodata/lang/ES01";
 import { Juego } from '../../juego.model';
 import { UserdataService } from 'src/app/services/userdata.service';
+import Timer from 'easytimer.js';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -27,9 +29,18 @@ export class JuegoMapaEuropaComponent {
   datos:any;
   idUsuario:any;
 
+  timer = new Timer();
+  tiempo_string = '';
+
   constructor(private countrydata: CountrydataService, private userdata: UserdataService){}
 
   ngAfterViewInit(){
+    this.timer.start({precision: 'secondTenths'});
+
+    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
+    });
+
     this.idUsuario = localStorage.getItem('userId');
     this.pedirPaises();
 
@@ -63,10 +74,12 @@ export class JuegoMapaEuropaComponent {
           ev.target.states.applyAnimate('bien');
         });
         this.index++;
-        if(this.index != 1){//Poner this.json.length
+        if(this.index != this.json.length){//Poner this.json.length
           this.pais = this.json[this.index].nombre_pais;
         }else{
           this.fin = true;
+          this.timer.pause();
+          this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
           this.updateRanking();
         }
       }else{
@@ -104,8 +117,13 @@ export class JuegoMapaEuropaComponent {
 
   }
 
+  salir(){
+    this.timer.stop();
+    history.back();
+  }
+
   updateRanking(){
-    this.datos = new Juego(parseInt(this.idUsuario),'mapa_europa',this.puntuacion,'10');
+    this.datos = new Juego(parseInt(this.idUsuario),'mapa_europa',this.puntuacion,this.tiempo_string);
     this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
     });
   }

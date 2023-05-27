@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
+    public function eliminarUsuario($id){
+        DB::table('users')->where('id', $id)->delete();
+
+    }
+
+    public function mostrarUsuarios(){
+        $consulta_usuarios = 'select id, name, email from users where id != 29';
+        $query_usuarios = DB::select($consulta_usuarios);
+        return response()->json($query_usuarios, 200);
+    }
+
+
     public function showRanking(){
         $consulta_showRanking = 'select b.name, a.nombre_juego, a.puntuacion, a.tiempo from ranking a join users b
             on a.id_usuario = b.id order by a.puntuacion desc';
