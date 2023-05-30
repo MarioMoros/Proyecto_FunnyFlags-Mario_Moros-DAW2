@@ -28,6 +28,7 @@ export class JuegoBanderasEuropaComponent {
   tiempo_string = '';
 
 
+
   constructor(private countrydata: CountrydataService, private userdata: UserdataService, private fb: FormBuilder){
     this.form = this.fb.group({
       pais_formulario: ''
@@ -64,6 +65,9 @@ export class JuegoBanderasEuropaComponent {
     let pais_bueno = this.eliminarDiacriticosEs(this.pais);
 
     if(pais_bueno.toLowerCase() == introducido_bueno.toLowerCase()){
+
+
+
       this.form.setValue({
         pais_formulario: ''
       });
@@ -74,10 +78,11 @@ export class JuegoBanderasEuropaComponent {
       }else{
         this.fin = true;
         this.timer.pause();
-        this.tiempo_string = this.timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']);
+        this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
         this.updateRanking();
       }
     }else{
+
       this.puntuacion = this.puntuacion - 10;
     }
   }

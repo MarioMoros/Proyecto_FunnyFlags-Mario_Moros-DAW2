@@ -30,9 +30,6 @@ export class RankingComponent {
     this.showRanking();
   }
 
-  ngAfterInit(){
-
-  }
 
   showRanking(){
     this.loading = true;

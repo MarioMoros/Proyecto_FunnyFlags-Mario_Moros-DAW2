@@ -20,7 +20,7 @@ export class LoginComponent {
 
   loginUser(){
     if(this.login.email == undefined || this.login.password == undefined){
-        alert('Campos incorrectos');
+      this.target = '<div>Rellene todos los campos</div>';
       }else{
         this.target = '<div></div>';
         this.loading = true;

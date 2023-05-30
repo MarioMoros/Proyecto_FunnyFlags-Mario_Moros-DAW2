@@ -19,7 +19,7 @@ export class RegisterComponent {
   registerUser(){
     if(this.register.name == undefined || this.register.email == undefined
       || this.register.password == undefined){
-        alert('Campos incorrectos');
+        this.target = '<div>Rellene todos los campos</div>';
       }else{
         this.target = '<div></div>';
         this.loading = true;

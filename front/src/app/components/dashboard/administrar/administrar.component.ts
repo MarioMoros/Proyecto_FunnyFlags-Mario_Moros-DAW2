@@ -19,9 +19,10 @@ export class AdministrarComponent {
     this.mostrarUsuarios();
   }
 
-  eliminarUsuario(id:any){
+  eliminarUsuario(id:any, usuario:any){
     this.loading = true;
     this.userdata.eliminarUsuario(id).subscribe((response: any) =>{
+      alert('Se ha eliminado al usuario: '+usuario);
       this.loading = false;
       this.dataSource = [];
       this.arrayUsuarios = [];

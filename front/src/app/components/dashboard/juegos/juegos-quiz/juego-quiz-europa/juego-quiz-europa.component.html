@@ -1,9 +1,35 @@
 
-<div class="container col-auto text-center mt-5">
+<div class="container text-center mt-5">
+  <div id="secondTenthsExample">
+    <div class="values"></div>
+  </div>
+  <h2 [innerHTML]="'Puntuación: '+puntuacion" class="border-bottom"></h2>
+
+
   <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
   <div [innerHTML]="pregunta"></div>
 
-  <div [innerHTML]="respuesta" id="este"></div>
+  <br>
+
+  <div class="row row-2 justify-content-center">
+    <div class="col-md-2 col-6">
+      <button mat-button id="respuesta1" class="w-100 h-100" (click)="comprobar()"></button>
+    </div>
+    <div class="col-md-2 col-6">
+      <button mat-button id="respuesta2" class="w-100 h-100" (click)="comprobar()"></button>
+    </div>
+  </div>
+  <br>
+  <div class="row row-2 justify-content-center">
+    <div class="col-md-2 col-6">
+      <button mat-button id="respuesta3" class="w-100 h-100" (click)="comprobar()"></button>
+    </div>
+    <div class="col-md-2 col-6">
+      <button mat-button id="respuesta4" class="w-100 h-100" (click)="comprobar()"></button>
+    </div>
+  </div>
+
+  <br>
 
 <button type="button" *ngIf="!loading" mat-raised-button color="warn" class="mt-5" onclick="history.back()">
   <mat-icon>close</mat-icon>

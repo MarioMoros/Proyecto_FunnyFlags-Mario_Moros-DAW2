@@ -2,19 +2,15 @@
   <div id="secondTenthsExample">
     <div class="values"></div>
   </div>
+  <h2 [innerHTML]="'Puntuación: '+puntuacion"></h2>
   <div *ngIf="!fin">
     <h1 class="border-bottom border-top" [innerHTML]="pais"></h1>
 
-    <div id="chartdiv" style="width: 100%; height: 700px; margin-top: 50px;"></div>
+    <div id="chartdiv" style="width: 100%; height: 60vh; margin-top: 50px;"></div>
   </div>
 
   <button type="button" mat-raised-button color="warn" (click)="salir()">
     <mat-icon>close</mat-icon>
     <span>Abandonar</span>
   </button>
-</div>
-
-<div class="container" *ngIf="fin">
-  <h1>Puntuación</h1>
-  <h2 [innerHTML]="puntuacion"></h2>
 </div>
