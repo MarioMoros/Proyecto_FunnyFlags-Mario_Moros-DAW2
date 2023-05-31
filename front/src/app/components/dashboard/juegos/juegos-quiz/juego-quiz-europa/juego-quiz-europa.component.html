@@ -7,31 +7,33 @@
 
 
   <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
-  <div [innerHTML]="pregunta"></div>
+  <div *ngIf="!fin">
+    <div [innerHTML]="pregunta"></div>
 
-  <br>
+    <br>
 
-  <div class="row row-2 justify-content-center">
-    <div class="col-md-2 col-6">
-      <button mat-button id="respuesta1" class="w-100 h-100" (click)="comprobar()"></button>
+    <div class="row row-2 justify-content-center">
+      <div class="col-md-2 col-6">
+        <button mat-button id="respuesta1" class="w-100 h-100" (click)="comprobar('respuesta1')"></button>
+      </div>
+      <div class="col-md-2 col-6">
+        <button mat-button id="respuesta2" class="w-100 h-100" (click)="comprobar('respuesta2')"></button>
+      </div>
     </div>
-    <div class="col-md-2 col-6">
-      <button mat-button id="respuesta2" class="w-100 h-100" (click)="comprobar()"></button>
+    <br>
+    <div class="row row-2 justify-content-center">
+      <div class="col-md-2 col-6">
+        <button mat-button id="respuesta3" class="w-100 h-100" (click)="comprobar('respuesta3')"></button>
+      </div>
+      <div class="col-md-2 col-6">
+        <button mat-button id="respuesta4" class="w-100 h-100" (click)="comprobar('respuesta4')"></button>
+      </div>
     </div>
   </div>
-  <br>
-  <div class="row row-2 justify-content-center">
-    <div class="col-md-2 col-6">
-      <button mat-button id="respuesta3" class="w-100 h-100" (click)="comprobar()"></button>
-    </div>
-    <div class="col-md-2 col-6">
-      <button mat-button id="respuesta4" class="w-100 h-100" (click)="comprobar()"></button>
-    </div>
-  </div>
 
   <br>
 
-<button type="button" *ngIf="!loading" mat-raised-button color="warn" class="mt-5" onclick="history.back()">
+<button type="button" mat-raised-button color="warn" class="mt-5" (click)="salir()">
   <mat-icon>close</mat-icon>
   <span>Abandonar</span>
 </button>
