@@ -1,1 +1,4 @@
 
+.mat-mdc-button {
+  --mat-mdc-button-persistent-ripple-color: none;
+}

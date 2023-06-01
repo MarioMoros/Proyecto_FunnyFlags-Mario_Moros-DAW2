@@ -1,8 +1,18 @@
 <div class="container col-auto text-center mt-5">
-  <div id="secondTenthsExample">
-    <div class="values"></div>
+  <div *ngIf="start">
+    <div id="secondTenthsExample">
+      <div class="values"></div>
+    </div>
+    <h2 [innerHTML]="'Puntuación: '+puntuacion"></h2>
   </div>
-  <h2 [innerHTML]="'Puntuación: '+puntuacion"></h2>
+  <div *ngIf="!start" class="mb-4">
+    <h1>Juego Mapa Europa</h1>
+    <p>Acierta todos los paises o llega a 0 puntos para terminar</p>
+    <button type="button" mat-raised-button color="primary" (click)="empezar()">
+      <mat-icon>close</mat-icon>
+      <span>Empezar</span>
+    </button>
+  </div>
   <div *ngIf="!fin">
     <h1 class="border-bottom border-top" [innerHTML]="pais"></h1>
 

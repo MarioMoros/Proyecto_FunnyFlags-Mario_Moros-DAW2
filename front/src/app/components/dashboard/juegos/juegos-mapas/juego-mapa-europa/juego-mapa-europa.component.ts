@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Juego } from '../../juego.model';
+import { UserdataService } from 'src/app/services/userdata.service';
 import { CountrydataService } from 'src/app/services/countrydata.service';
 
 import * as am5 from "@amcharts/amcharts5";
@@ -7,8 +8,7 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_europeHigh from "@amcharts/amcharts5-geodata/region/world/europeHigh";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_lang_ES from "@amcharts/amcharts5-geodata/lang/ES01";
-import { Juego } from '../../juego.model';
-import { UserdataService } from 'src/app/services/userdata.service';
+
 import Timer from 'easytimer.js';
 import * as $ from 'jquery';
 
@@ -25,6 +25,8 @@ export class JuegoMapaEuropaComponent {
   polygonSeries:any;
   puntuacion = 100;
 
+  start = false;
+
   fin = false;
   datos:any;
   idUsuario:any;
@@ -35,14 +37,8 @@ export class JuegoMapaEuropaComponent {
   constructor(private countrydata: CountrydataService, private userdata: UserdataService){}
 
   ngAfterViewInit(){
-    this.timer.start({precision: 'secondTenths'});
-
-    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
-      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
-    });
 
     this.idUsuario = localStorage.getItem('userId');
-    this.pedirPaises();
 
     let root = am5.Root.new("chartdiv");
     root.setThemes([
@@ -77,10 +73,7 @@ export class JuegoMapaEuropaComponent {
         if(this.index != this.json.length){//Poner this.json.length
           this.pais = this.json[this.index].nombre_pais;
         }else{
-          this.fin = true;
-          this.timer.pause();
-          this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
-          this.updateRanking();
+          this.finalizar();
         }
       }else{
         ev.target.states.applyAnimate('mal');
@@ -92,7 +85,11 @@ export class JuegoMapaEuropaComponent {
           ev.target.states.applyAnimate('volver');
         }, 1000);
 
-        this.puntuacion--;
+        this.puntuacion -= 10;
+
+        if(this.puntuacion == 0){
+          this.finalizar();
+        }
       }
     });
 
@@ -117,9 +114,26 @@ export class JuegoMapaEuropaComponent {
 
   }
 
+  finalizar(){
+    this.fin = true;
+    this.timer.pause();
+    this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
+    this.updateRanking();
+  }
+
   salir(){
     this.timer.stop();
     history.back();
+  }
+
+  empezar(){
+    this.pedirPaises();
+    this.start = true;
+    this.timer.start({precision: 'secondTenths'});
+
+    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
+    });
   }
 
   updateRanking(){

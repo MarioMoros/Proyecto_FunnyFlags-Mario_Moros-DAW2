@@ -19,6 +19,7 @@ export class JuegoBanderasEuropaComponent {
   json:any = [];
   puntuacion = 100;
   fin = false;
+  start = false;
 
   datos:any;
 
@@ -37,15 +38,7 @@ export class JuegoBanderasEuropaComponent {
 
   ngAfterViewInit(){
     this.idUsuario = localStorage.getItem('userId');
-    this.pedirBandera();
-
-    this.timer.start({precision: 'secondTenths'});
-
-    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
-      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
-    });
   }
-
 
 
   pedirBandera(){
@@ -58,6 +51,16 @@ export class JuegoBanderasEuropaComponent {
     });
   }
 
+  empezar(){
+    this.pedirBandera();
+    this.start = true;
+    this.timer.start({precision: 'secondTenths'});
+
+    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
+    });
+  }
+
   comprobar(){
     const pais_introducido = this.form.value.pais_formulario;
 
@@ -65,8 +68,6 @@ export class JuegoBanderasEuropaComponent {
     let pais_bueno = this.eliminarDiacriticosEs(this.pais);
 
     if(pais_bueno.toLowerCase() == introducido_bueno.toLowerCase()){
-
-
 
       this.form.setValue({
         pais_formulario: ''
@@ -76,20 +77,28 @@ export class JuegoBanderasEuropaComponent {
         this.pregunta = this.json[this.index].bandera;
         this.pais = this.json[this.index].nombre_pais;
       }else{
-        this.fin = true;
-        this.timer.pause();
-        this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
-        this.updateRanking();
+        this.finalizar();
       }
     }else{
 
       this.puntuacion = this.puntuacion - 10;
+
+      if(this.puntuacion == 0){
+        this.finalizar();
+      }
     }
   }
 
   salir(){
     this.timer.stop();
     history.back();
+  }
+
+  finalizar(){
+    this.fin = true;
+    this.timer.pause();
+    this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
+    this.updateRanking();
   }
 
   eliminarDiacriticosEs(texto:String){

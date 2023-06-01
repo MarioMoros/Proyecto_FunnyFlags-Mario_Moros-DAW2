@@ -1,10 +1,20 @@
 
 <div class="container text-center mt-5">
-  <div id="secondTenthsExample">
-    <div class="values"></div>
+  <div *ngIf="start">
+    <div id="secondTenthsExample">
+      <div class="values"></div>
+    </div>
+    <h2 [innerHTML]="'Puntuación: '+puntuacion"></h2>
   </div>
-  <h2 [innerHTML]="'Puntuación: '+puntuacion" class="border-bottom"></h2>
 
+  <div *ngIf="!start" class="mb-4">
+    <h1>Juego Banderas Europa</h1>
+    <p>Acierta las 5 pregunta o llega a 0 puntos para terminar</p>
+    <button type="button" mat-raised-button color="primary" (click)="empezar()">
+      <mat-icon>close</mat-icon>
+      <span>Empezar</span>
+    </button>
+  </div>
 
   <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
   <div *ngIf="!fin">
@@ -33,10 +43,15 @@
 
   <br>
 
-<button type="button" mat-raised-button color="warn" class="mt-5" (click)="salir()">
-  <mat-icon>close</mat-icon>
-  <span>Abandonar</span>
-</button>
+  <div *ngIf="fin">
+    <h1>THE END</h1>
+    <p>Mire su nueva puntuación en el Ranking</p>
+  </div>
+
+  <button type="button" mat-raised-button color="warn" class="mt-5" (click)="salir()">
+    <mat-icon>close</mat-icon>
+    <span>Abandonar</span>
+  </button>
 </div>
 
 

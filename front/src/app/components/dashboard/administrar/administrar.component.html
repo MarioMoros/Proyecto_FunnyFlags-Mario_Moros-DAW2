@@ -35,7 +35,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <h1 class="mt-4" *ngIf="!existen">No existen usuarios</h1>
 </div>
 
-
+<div [innerHTML]="target" *ngIf="loading" class="text-center mt-5"></div>
 <mat-spinner *ngIf="loading" diameter="50" class="spinner mt-4"></mat-spinner>

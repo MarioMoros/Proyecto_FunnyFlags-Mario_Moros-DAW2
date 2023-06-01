@@ -12,6 +12,9 @@ export class AdministrarComponent {
   dataSource:any;
   arrayUsuarios = [];
   json = [];
+  existen = false;
+
+  target = '';
 
   constructor(private userdata: UserdataService){}
 
@@ -22,11 +25,15 @@ export class AdministrarComponent {
   eliminarUsuario(id:any, usuario:any){
     this.loading = true;
     this.userdata.eliminarUsuario(id).subscribe((response: any) =>{
-      alert('Se ha eliminado al usuario: '+usuario);
-      this.loading = false;
-      this.dataSource = [];
-      this.arrayUsuarios = [];
-      this.mostrarUsuarios();
+      this.target = 'Se ha eliminado al usuario: '+usuario;
+
+      setTimeout(()=>{
+        this.loading = false;
+        this.dataSource = [];
+        this.arrayUsuarios = [];
+        this.mostrarUsuarios();
+      }, 2000);
+
     });
   }
 
@@ -34,6 +41,9 @@ export class AdministrarComponent {
     this.loading = true;
     this.userdata.mostrarUsuarios().subscribe((response: any) =>{
       this.json = response;
+      if(this.json.length > 0){
+        this.existen = true;
+      }
       for (let index = 0; index < this.json.length; index++) {
           this.arrayUsuarios.push(this.json[index]);
       }

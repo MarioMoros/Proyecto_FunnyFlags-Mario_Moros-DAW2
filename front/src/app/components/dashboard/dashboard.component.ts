@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserdataService } from '../../services/userdata.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,6 +22,7 @@ export class DashboardComponent {
     if(parseInt(this.id) == 29){
       this.esAdmin = true;
     }
+
   }
 
   logoutUser(){

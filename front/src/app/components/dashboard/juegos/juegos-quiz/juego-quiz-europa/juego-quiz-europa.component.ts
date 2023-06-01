@@ -16,6 +16,7 @@ export class JuegoQuizEuropaComponent {
 
   loading = false;
   fin = false;
+  start = false;
 
   json = [];
 
@@ -31,14 +32,6 @@ export class JuegoQuizEuropaComponent {
 
   ngOnInit(){
     this.idUsuario = localStorage.getItem('userId');
-    this.timer.start({precision: 'secondTenths'});
-
-    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
-      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
-    });
-
-
-    this.question();
   }
 
   question(){
@@ -125,10 +118,7 @@ export class JuegoQuizEuropaComponent {
       });
 
     }else{
-      this.fin = true;
-      this.timer.pause();
-      this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
-      this.updateRanking();
+      this.finalizar();
     }
 
   }
@@ -143,7 +133,10 @@ export class JuegoQuizEuropaComponent {
     }
 
     if(dato != this.json[2]){
-      this.puntuacion -= 20;
+      this.puntuacion -= 25;
+      if(this.puntuacion == 0){
+        this.finalizar();
+      }
     }
 
     this.question();
@@ -153,6 +146,23 @@ export class JuegoQuizEuropaComponent {
     this.datos = new Juego(parseInt(this.idUsuario),'quiz_europa',this.puntuacion,this.tiempo_string);
     this.userdata.updateRanking(this.datos).subscribe((response: any) =>{
     });
+  }
+
+  empezar(){
+    this.question();
+    this.start = true;
+    this.timer.start({precision: 'secondTenths'});
+
+    this.timer.addEventListener('secondTenthsUpdated', (e:any) => {
+      $('#secondTenthsExample .values').html(this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']));
+    });
+  }
+
+  finalizar(){
+    this.fin = true;
+    this.timer.pause();
+    this.tiempo_string = this.timer.getTimeValues().toString(['minutes', 'seconds', 'secondTenths']);
+    this.updateRanking();
   }
 
   salir(){
